@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login</title>
+<meta name="description" content="spring-boot thymeleaf | Login ">
+</head>
+<body>
+	<h3>Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	<form th:action="@{/logout}" method="post">
+		<input class="btn" type="submit" value="Sign Out" />
+	</form>
+</body>
+</html>

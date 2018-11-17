@@ -17,9 +17,21 @@ public class SecUserController {
 	@Autowired
     SecUserService secUserService;
 	
-	@RequestMapping(value = {"/userlogin"}, method = RequestMethod.GET)
-    public String login() {
+	@RequestMapping("/")
+    public String root(Model model) {
+        model.addAttribute("formUser", new SecUser());
         return "login";
+    }
+
+    @RequestMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("formUser", new SecUser());
+        return "login";
+    }
+    
+    @RequestMapping("/home")
+    public String home(Model model) {
+        return "home";
     }
 
 	@RequestMapping(value = {"/register"}, method = RequestMethod.GET)
@@ -38,6 +50,7 @@ public class SecUserController {
 		formUser.setPassword(new BCryptPasswordEncoder().encode(formUser.getPassword()));
 		if (secUserService.save(formUser) != null) {
 			System.out.println("Registration completed!!!");
+			return "redirect:/login";
         } else {
         	System.out.println("Registration failed!!!");
         }
