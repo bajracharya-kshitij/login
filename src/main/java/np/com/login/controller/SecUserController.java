@@ -16,6 +16,11 @@ public class SecUserController {
 	
 	@Autowired
     SecUserService secUserService;
+	
+	@RequestMapping(value = {"/userlogin"}, method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
 
 	@RequestMapping(value = {"/register"}, method = RequestMethod.GET)
 	public String getRegistrationPage(Model model) {
